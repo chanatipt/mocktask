@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(UserSeeder::class);
+//         $this->call(UserSeeder::class);
 		/* fbsg-signature-addSeedTables:<begin> */
          $this->call(taskStatusTableSeeder::class);
          $this->call(RoleTableSeeder::class);
