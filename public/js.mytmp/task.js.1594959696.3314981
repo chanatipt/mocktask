@@ -1,0 +1,61 @@
+$(document).ready(function(){	
+	/* fbsg-signature-addJSModelFixed:<begin> */
+	// set up table
+	var dataTablestaskManange = $('#dataTables-taskManange').DataTable({
+        serverSide: true,
+        processing: true,
+		responsive: true,
+		fixedHeader: true,
+        ajax: {"url": "/gettaskDataTable",
+			  },
+        dom: 'Bfrtip',
+        buttons: [
+        ],
+        columns: [
+                    { data: 'tasktitle',   name: 'tasktitle',   className: 'text-center'  },
+                    { data: 'taskcode',   name: 'taskcode',   className: 'text-center'  },
+                    { data: 'duedate',   name: 'duedate',   className: 'text-center'  },
+                    { data: 'remark',   name: 'remark',   className: 'text-center'  },
+                    { data: 'status_id',   name: 'status_id',   className: 'text-center'  },
+                    { data: 'managecol',   name: 'managecol',   className: 'text-center', orderable: false  },        ],
+	});
+	dataTablestaskManange.columns('.colhide').visible(false);
+
+
+    $('#edit-taskbtn').on('click', function() {
+		EnabletaskViewEdit();
+    });
+
+    $('#cancel-taskbtn').on('click', function() {
+        location.reload();
+    });
+	
+	$('#back-taskbtn').on('click', function() {
+		window.location.href = localStorage['last_visited'];
+	});
+	
+	function EnabletaskViewEdit() {
+        $('.view-mode').hide();
+        $('.edit-mode').show();
+        $('.value-updatetask').prop('disabled', false);
+	}
+	
+	function DisabletaskViewEdit() {
+        $('.view-mode').show();
+        $('.edit-mode').hide();
+		$('.error-updatetask').hide();
+        $('.value-updatetask').prop('disabled', true);
+	}
+	
+	$('#save-taskbtn').on('click', function() {
+		confirmUpdatetask($('#updatetask-body-task_id').val(), 0);
+	});	
+		
+	/* fbsg-signature-addJSModelFixed:<end> */
+	
+	/* fbsg-signature-addJSActionModel:<begin> */
+	/* fbsg-signature-addJSActionModel:<end> */
+
+	/* fbsg-signature-addJSPopulateList:<begin> */
+	/* fbsg-signature-addJSPopulateList:<end> */
+});

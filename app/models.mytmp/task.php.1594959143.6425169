@@ -1,0 +1,13 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class task extends Model
+{
+    /* fbsg-signature-addTableNames:<begin> task */
+    protected $table = 'tasks';
+    /* fbsg-signature-addTableNames:<end> task */
+    //
+}

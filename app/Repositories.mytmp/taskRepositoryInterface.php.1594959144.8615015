@@ -1,0 +1,9 @@
+<?php
+
+namespace App\Repositories;
+
+interface taskRepositoryInterface
+{
+	/* fbsg-signature-createRepositories:<begin> */
+	/* fbsg-signature-createRepositories:<end> */
+}
