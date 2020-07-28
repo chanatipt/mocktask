@@ -14,6 +14,7 @@ use Validator;
 use Yajra\Datatables\Datatables;
 /* fbsg-signature-addControllerUseModels:<end> task */
 use Illuminate\Support\Facades\Storage;
+use Mail;
 
 class tasksController extends Controller
 {
@@ -257,7 +258,7 @@ class tasksController extends Controller
 	/*******************************************/
 	/* extra function to get task info by Code */
 	/*******************************************/
-	public function viewtaskByCodeShow($code, Request $request) {
+	public function viewtaskByCodeSubmit($code, Request $request) {
 		$task = task::where('taskcode', $code)->first();
 		if($task) {
 			$showAll = 1;
@@ -295,6 +296,19 @@ class tasksController extends Controller
 		$this->getAuthorization('view', $task);
 		
 		return Storage::download('files/'.$filename);
+	}
+	/************************************/
+	/* function to handle email sending */
+	/************************************/
+	public function sendtaskFileMailSubmit($code, $email) {
+		$task = task::where('taskcode', $code)->first();
+
+		if($task) {
+			Mail::send('mail', ['task' => $task], function ($m) use ($email) {
+				$m->from('bot@example.com', 'ธุรการบอท');
+				$m->to($email, 'คุณลูกค้า')->subject('เอกสารงาน');
+			});
+		}
 	}
 	
 	/* fbsg-signature-addStateFunc-update:<begin> updatetask,task */

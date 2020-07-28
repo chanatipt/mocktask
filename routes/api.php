@@ -29,4 +29,5 @@ Route::get('/canceltask/{id}', 'tasksController@canceltaskSubmit')->middleware('
 Route::put('/uncanceltask/{id}', 'tasksController@uncanceltaskSubmit')->middleware('auth:api');
 Route::get('/gettaskDataTable', 'tasksController@gettaskDataTableSubmit')->middleware('auth:api');
 
-Route::post('/viewtaskByCode/{code}', 'tasksController@viewtaskByCodeShow')->middleware('auth:api');
+Route::post('/viewtaskByCode/{code}', 'tasksController@viewtaskByCodeSubmit')->middleware('auth:api');
+Route::post('/sendtaskFileMail/{code}/{email}', 'tasksController@sendtaskFileMailSubmit')->middleware('auth:api');
